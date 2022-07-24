@@ -1,0 +1,221 @@
+[
+    {
+        "id": "f5b00c562d9edf6e",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5ca553307ac6e676",
+        "type": "mqtt in",
+        "z": "f5b00c562d9edf6e",
+        "name": "",
+        "topic": "codigoIoT/g9/mosquitto/msg",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1e4ec9d46098bae0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 120,
+        "wires": [
+            [
+                "a3d5505132589850"
+            ]
+        ]
+    },
+    {
+        "id": "25ad4e762533be0e",
+        "type": "mqtt out",
+        "z": "f5b00c562d9edf6e",
+        "name": "",
+        "topic": "codigoIoT/g9/mosquitto/msg",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "1e4ec9d46098bae0",
+        "x": 480,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "a3d5505132589850",
+        "type": "json",
+        "z": "f5b00c562d9edf6e",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 430,
+        "y": 120,
+        "wires": [
+            [
+                "f9474a5ce8992a2a",
+                "5f468bf6463a314c"
+            ]
+        ]
+    },
+    {
+        "id": "f9474a5ce8992a2a",
+        "type": "function",
+        "z": "f5b00c562d9edf6e",
+        "name": "",
+        "func": "msg.topic = msg.payload.id;\nmsg.payload = msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 120,
+        "wires": [
+            [
+                "6722f78d308a4ddf"
+            ]
+        ]
+    },
+    {
+        "id": "5f468bf6463a314c",
+        "type": "debug",
+        "z": "f5b00c562d9edf6e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "5cea96f8009af6be",
+        "type": "inject",
+        "z": "f5b00c562d9edf6e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "15",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"id\":\"Helen\",\"temp\":17}",
+        "payloadType": "str",
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "25ad4e762533be0e"
+            ]
+        ]
+    },
+    {
+        "id": "6722f78d308a4ddf",
+        "type": "ui_chart",
+        "z": "f5b00c562d9edf6e",
+        "name": "",
+        "group": "e7f19d11e290a5cd",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Temperatura del grupo",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "45",
+        "removeOlder": "20",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 860,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1e4ec9d46098bae0",
+        "type": "mqtt-broker",
+        "name": "BrokerG9",
+        "broker": "52.57.69.25",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "e7f19d11e290a5cd",
+        "type": "ui_group",
+        "name": "Grupo gráfica",
+        "tab": "0ec119f5d45ff99b",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0ec119f5d45ff99b",
+        "type": "ui_tab",
+        "name": "Flow4",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
